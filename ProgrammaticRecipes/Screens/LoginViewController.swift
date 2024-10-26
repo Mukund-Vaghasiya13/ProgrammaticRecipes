@@ -1,0 +1,106 @@
+//
+//  LoginViewController.swift
+//  ProgrammaticRecipes
+//
+//  Created by Mukund vaghasiya  on 24/10/24.
+//
+
+import UIKit
+
+class LoginViewController: UIViewController {
+
+    var username = RRTextField(with: "Enter Username or Email", is: false)
+    var password = RRTextField(with: "Enter Password", is: true)
+    var Errorlable = RRErrorLabel(text: "")
+    var LoginButton = RRButton(with: "Login", BG: .systemGreen, FG: .white)
+    var signUpButton = RRTextButton(with: "Create user!", also: .systemBlue, and: .systemGreen)
+    var orLabel = RRBodyLable(text: "Or", FG: .label)
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        ConfigureNavBar()
+        ConfigureView()
+        
+        username.delegate = self
+        password.delegate = self
+    }
+    
+    private func ConfigureNavBar(){
+        view.backgroundColor = .systemBackground
+        navigationItem.title = "Login"
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    private func ConfigureView(){
+        DismissKeyBord()
+        
+        username.becomeFirstResponder()
+        
+        ViewHandler()
+        
+        view.addSubview(orLabel)
+    
+        signUpButton.addTarget(self, action: #selector(SignUpClickAction), for: .touchUpInside)
+        
+        NSLayoutConstraint.activate([
+        
+            username.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            username.heightAnchor.constraint(equalToConstant: 55),
+            
+            password.topAnchor.constraint(equalTo: username.bottomAnchor, constant: 10),
+            password.heightAnchor.constraint(equalToConstant: 55),
+            
+            Errorlable.topAnchor.constraint(equalTo: password.bottomAnchor, constant: 10),
+            Errorlable.heightAnchor.constraint(equalToConstant: 18),
+            
+            LoginButton.topAnchor.constraint(equalTo: Errorlable.bottomAnchor, constant: 10),
+            LoginButton.heightAnchor.constraint(equalToConstant: 55),
+            
+            orLabel.topAnchor.constraint(equalTo: LoginButton.bottomAnchor, constant: 10),
+            orLabel.heightAnchor.constraint(equalToConstant: 23),
+            orLabel.centerXAnchor.constraint(equalTo: LoginButton.centerXAnchor),
+            orLabel.widthAnchor.constraint(equalToConstant: 23),
+            
+            signUpButton.topAnchor.constraint(equalTo: orLabel.bottomAnchor, constant: 10),
+            signUpButton.heightAnchor.constraint(equalToConstant: 25),
+        ])
+    }
+    
+    private func ViewHandler(){
+        let viewArray = [username,password,Errorlable,LoginButton,signUpButton]
+        for i in viewArray{
+            view.addSubview(i)
+            NSLayoutConstraint.activate([
+                i.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+                i.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            ])
+        }
+    }
+    
+    @objc func SignUpClickAction(){
+        navigationController?.pushViewController(SignUpViewController(), animated: true)
+    }
+    
+    
+    private func  Validation(){
+        if let usenametext = username.text, usenametext.isEmpty{
+            Errorlable.text = "Enter username"
+            username.becomeFirstResponder()
+        } else if let passwordtext = password.text,passwordtext.isEmpty{
+            Errorlable.text = "Enter Password"
+            password.becomeFirstResponder()
+        }else{
+            Errorlable.text = ""
+        }
+    }
+    
+}
+
+
+
+extension LoginViewController:UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        Validation()
+        return true
+    }
+}
