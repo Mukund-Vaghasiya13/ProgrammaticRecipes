@@ -32,7 +32,7 @@ class NetworkHandler{
             }
         }
         
-        var task = URLSession.shared.dataTask(with: request) { data, res, err in
+        let task = URLSession.shared.dataTask(with: request) { data, res, err in
             if let err = err {
                 let error =  ErrorModle(message: "Network Call Fail", technicalDetails: err.localizedDescription, statusCode: nil)
                 complition(.failure(error))
@@ -68,6 +68,20 @@ class NetworkHandler{
         task.resume()
     }
     
+    
+//    private func DecodingData<T:Codable>(for:T.Type,Case:Bool,data:Data,complition: @escaping (Result<T,ErrorModle>)->Void){
+//        do{
+//            let data = try JSONDecoder().decode(T.self, from: data)
+//            if Case{
+//                complition(.success(data))
+//            }else{
+//                complition(.failure(data as! ErrorModle))
+//            }
+//        }catch{
+//            let error = ErrorModle(message: "Network Issue", technicalDetails: "Decoding Fail", statusCode: nil)
+//            complition(.failure(error))
+//        }
+//    }
     
 }
 

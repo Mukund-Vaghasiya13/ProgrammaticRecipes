@@ -18,9 +18,19 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        do {
+            let token = try TokenManager.shared.GetToken()
+            if let token = token{
+                navigationController?.pushViewController(HomeViewController(), animated: true)
+            }
+        }catch(_){
+            print("Errror💩")
+            //MARK: handle Error
+        }
+        
         ConfigureNavBar()
         ConfigureView()
-        
         username.delegate = self
         password.delegate = self
     }
@@ -81,9 +91,9 @@ class LoginViewController: UIViewController {
     
     
     @objc func LoginClickAction(){
-       print("Login Button Pressed!")
-        #warning("Network Call")
-       
+        if Validation(){
+            NetworkCall()
+        }
     }
     
     
@@ -102,6 +112,38 @@ class LoginViewController: UIViewController {
         }
     }
     
+    func NetworkCall(){
+        let url = "http://localhost:3000/api/v1/User/login"
+        let body = [
+            "usernameOrEmail":username.text ?? "",
+            "password":password.text ?? ""
+        ]
+        
+        do{
+            let data =  try JSONEncoder().encode(body)
+            NetworkHandler.shared.PostRequest(for: LoginModle.self, endpoint: url, Body: data, header: nil) { result in
+                switch result{
+                case .success(let data):
+                    print(data)
+                    do{
+                       try TokenManager.shared.SetTokenDataLocally(loginData: data)
+                        DispatchQueue.main.async{
+                            self.navigationController?.pushViewController(HomeViewController(), animated: true)
+                        }
+                    }catch(let e){
+                        print(e)
+                    }
+                        break
+                case .failure(let err):
+                    print(err.technicalDetails ?? "FAIL🤧")
+                      break
+                }
+            }
+        }catch{
+            print("Encode Fail")
+        }
+    }
+    
 }
 
 
@@ -109,7 +151,7 @@ class LoginViewController: UIViewController {
 extension LoginViewController:UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if Validation(){
-            #warning("Network Call")
+            NetworkCall()
         }
         return true
     }
