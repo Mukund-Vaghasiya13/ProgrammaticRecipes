@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		60409F602CCCBA390037F993 /* ViewController+EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60409F5F2CCCBA390037F993 /* ViewController+EXT.swift */; };
+		6056333E2CCCE6C100E9AD2D /* LoginModle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6056333D2CCCE6C100E9AD2D /* LoginModle.swift */; };
+		605633402CCCE79700E9AD2D /* ErrorModle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6056333F2CCCE79700E9AD2D /* ErrorModle.swift */; };
+		605633422CCCEFAD00E9AD2D /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605633412CCCEFAD00E9AD2D /* NetworkController.swift */; };
+		605633442CCCF20400E9AD2D /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605633432CCCF20400E9AD2D /* TokenManager.swift */; };
 		607BF45E2CCBBA3E00076067 /* RRTextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607BF45D2CCBBA3E00076067 /* RRTextButton.swift */; };
 		607BF4602CCBBC9200076067 /* RRBodyLable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607BF45F2CCBBC9200076067 /* RRBodyLable.swift */; };
 		607BF4622CCBC18600076067 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607BF4612CCBC18600076067 /* SignUpViewController.swift */; };
@@ -23,6 +27,10 @@
 
 /* Begin PBXFileReference section */
 		60409F5F2CCCBA390037F993 /* ViewController+EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+EXT.swift"; sourceTree = "<group>"; };
+		6056333D2CCCE6C100E9AD2D /* LoginModle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModle.swift; sourceTree = "<group>"; };
+		6056333F2CCCE79700E9AD2D /* ErrorModle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorModle.swift; sourceTree = "<group>"; };
+		605633412CCCEFAD00E9AD2D /* NetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
+		605633432CCCF20400E9AD2D /* TokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenManager.swift; sourceTree = "<group>"; };
 		607BF45D2CCBBA3E00076067 /* RRTextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RRTextButton.swift; sourceTree = "<group>"; };
 		607BF45F2CCBBC9200076067 /* RRBodyLable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RRBodyLable.swift; sourceTree = "<group>"; };
 		607BF4612CCBC18600076067 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -57,6 +65,24 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		6056333B2CCCE64E00E9AD2D /* Modle */ = {
+			isa = PBXGroup;
+			children = (
+				6056333D2CCCE6C100E9AD2D /* LoginModle.swift */,
+				6056333F2CCCE79700E9AD2D /* ErrorModle.swift */,
+			);
+			path = Modle;
+			sourceTree = "<group>";
+		};
+		6056333C2CCCE65900E9AD2D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				605633412CCCEFAD00E9AD2D /* NetworkController.swift */,
+				605633432CCCF20400E9AD2D /* TokenManager.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		60C7D7642CC9FC5300D8B5D2 = {
 			isa = PBXGroup;
 			children = (
@@ -76,6 +102,8 @@
 		60C7D76F2CC9FC5400D8B5D2 /* ProgrammaticRecipes */ = {
 			isa = PBXGroup;
 			children = (
+				6056333C2CCCE65900E9AD2D /* Controller */,
+				6056333B2CCCE64E00E9AD2D /* Modle */,
 				60409F5E2CCCBA140037F993 /* Extension */,
 				60C7D7882CCA010F00D8B5D2 /* CustomsViews */,
 				60C7D7872CC9FFEC00D8B5D2 /* Support */,
@@ -212,6 +240,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				60C7D7862CC9FFCD00D8B5D2 /* LoginViewController.swift in Sources */,
+				6056333E2CCCE6C100E9AD2D /* LoginModle.swift in Sources */,
 				60C7D78B2CCA013A00D8B5D2 /* RRTextField.swift in Sources */,
 				60409F602CCCBA390037F993 /* ViewController+EXT.swift in Sources */,
 				60C7D7712CC9FC5400D8B5D2 /* AppDelegate.swift in Sources */,
@@ -220,7 +249,10 @@
 				607BF45E2CCBBA3E00076067 /* RRTextButton.swift in Sources */,
 				607BF4622CCBC18600076067 /* SignUpViewController.swift in Sources */,
 				607BF4602CCBBC9200076067 /* RRBodyLable.swift in Sources */,
+				605633402CCCE79700E9AD2D /* ErrorModle.swift in Sources */,
 				60DB2CC82CCA152200D3D9FE /* RRButton.swift in Sources */,
+				605633422CCCEFAD00E9AD2D /* NetworkController.swift in Sources */,
+				605633442CCCF20400E9AD2D /* TokenManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

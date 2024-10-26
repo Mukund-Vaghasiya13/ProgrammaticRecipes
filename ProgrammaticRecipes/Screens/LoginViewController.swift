@@ -29,18 +29,16 @@ class LoginViewController: UIViewController {
         view.backgroundColor = .systemBackground
         navigationItem.title = "Login"
         navigationController?.navigationBar.prefersLargeTitles = true
+        username.becomeFirstResponder()
     }
     
     private func ConfigureView(){
         DismissKeyBord()
-        
-        username.becomeFirstResponder()
-        
         ViewHandler()
         
         view.addSubview(orLabel)
-    
         signUpButton.addTarget(self, action: #selector(SignUpClickAction), for: .touchUpInside)
+        LoginButton.addTarget(self, action: #selector(LoginClickAction), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
         
@@ -82,15 +80,25 @@ class LoginViewController: UIViewController {
     }
     
     
-    private func  Validation(){
+    @objc func LoginClickAction(){
+       print("Login Button Pressed!")
+        #warning("Network Call")
+       
+    }
+    
+    
+    private func  Validation()->Bool{
         if let usenametext = username.text, usenametext.isEmpty{
             Errorlable.text = "Enter username"
             username.becomeFirstResponder()
+            return false
         } else if let passwordtext = password.text,passwordtext.isEmpty{
             Errorlable.text = "Enter Password"
             password.becomeFirstResponder()
+            return false
         }else{
             Errorlable.text = ""
+            return true
         }
     }
     
@@ -100,7 +108,9 @@ class LoginViewController: UIViewController {
 
 extension LoginViewController:UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        Validation()
+        if Validation(){
+            #warning("Network Call")
+        }
         return true
     }
 }
