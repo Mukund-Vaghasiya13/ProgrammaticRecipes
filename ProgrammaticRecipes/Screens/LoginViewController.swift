@@ -19,20 +19,19 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        do {
-            let token = try TokenManager.shared.GetToken()
-            if let token = token{
-                navigationController?.pushViewController(HomeViewController(), animated: true)
-            }
-        }catch(_){
-            print("Errror💩")
-            //MARK: handle Error
-        }
-        
+        ViewControllerValidation()
         ConfigureNavBar()
         ConfigureView()
         username.delegate = self
         password.delegate = self
+    }
+    
+    private func ViewControllerValidation(){
+        
+        let token = TokenManager.shared.GetToken()
+        if token != nil{
+            navigationController?.pushViewController(HomeViewController(), animated: true)
+        }
     }
     
     private func ConfigureNavBar(){
@@ -115,8 +114,8 @@ class LoginViewController: UIViewController {
     func NetworkCall(){
         let url = "http://localhost:3000/api/v1/User/login"
         let body = [
-            "usernameOrEmail":username.text ?? "",
-            "password":password.text ?? ""
+            "usernameOrEmail":username.text!,//MARK: Validating Before Call
+            "password":password.text!
         ]
         
         do{
@@ -125,17 +124,20 @@ class LoginViewController: UIViewController {
                 switch result{
                 case .success(let data):
                     print(data)
-                    do{
-                       try TokenManager.shared.SetTokenDataLocally(loginData: data)
-                        DispatchQueue.main.async{
-                            self.navigationController?.pushViewController(HomeViewController(), animated: true)
-                        }
-                    }catch(let e){
-                        print(e)
+                    TokenManager.shared.SetTokenDataLocally(loginData: data)
+                    DispatchQueue.main.async{
+                        self.navigationController?.pushViewController(HomeViewController(), animated: true)
                     }
                         break
                 case .failure(let err):
                     print(err.technicalDetails ?? "FAIL🤧")
+                    if err.statusCode == nil{
+                        DispatchQueue.main.async {
+                            self.ShowAlert(message: err.technicalDetails ?? "nil", title: err.message ?? "nil")
+                        }
+                    }else{
+                        DispatchQueue.main.async {self.Errorlable.text = err.message}
+                    }
                       break
                 }
             }

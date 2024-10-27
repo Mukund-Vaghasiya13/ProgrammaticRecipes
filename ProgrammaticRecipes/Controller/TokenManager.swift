@@ -13,57 +13,29 @@ class TokenManager{
     
     static var shared = TokenManager()
     
-    func SetTokenDataLocally(loginData:LoginModle) throws {
-        do{
-           let data =  try EncriptData(data: loginData)
-            UserDefaults.standard.setValue(data, forKey: "Token")
-        }catch(let e){
-            throw e
-        }
+    private var key = "Token"
+    
+    func SetTokenDataLocally(loginData:LoginModle){
+        let encript = try? JSONEncoder().encode(loginData)
+        UserDefaults.standard.setValue(encript, forKey: key)
+    }
+
+    func GetTokenDataLocally() -> LoginModle? {
+        let data = UserDefaults.standard.object(forKey: key) as? Data
+        
+        guard let data = data else{ return nil }
+        
+        let loginData = try? JSONDecoder().decode(LoginModle.self, from: data )
+        return loginData
     }
     
-    func GetTokenDataLocally() throws ->LoginModle {
-        let data = UserDefaults.standard.object(forKey: "Token")  as? Data
-        guard let data = data else {
-            throw ErrorModle(message: "OOPS! something Went Wrong", technicalDetails: "Data nil in Token Manager", statusCode: nil)
-        }
-        do{
-            return try DecodingData(data: data)
-        }catch(let e){
-            throw e
-        }
+    func GetToken() ->String? {
+        let loginData = GetTokenDataLocally()
+        return loginData?.Logintoken ?? nil
     }
     
-    
-    
-    func GetToken() throws ->String? {
-        let data = UserDefaults.standard.object(forKey: "Token")  as? Data
-        guard let data = data else {
-            throw ErrorModle(message: "OOPS! something Went Wrong", technicalDetails: "Data nil in Token Manager", statusCode: nil)
-        }
-        do{
-            let data =  try DecodingData(data: data)
-            return data.Logintoken
-        }catch(let e){
-            throw e
-        }
+    func LogoutDeleteToken(){
+        UserDefaults.standard.removeObject(forKey: key)
     }
     
-    private func DecodingData(data:Data) throws -> LoginModle{
-        do{
-            let data = try JSONDecoder().decode(LoginModle.self, from: data)
-            return data
-        }catch{
-            throw ErrorModle(message: "OOPS! something Went Wrong", technicalDetails:"Decoding Fail in TokenManager", statusCode: nil)
-        }
-    }
-    
-    private func EncriptData(data:LoginModle) throws -> Data{
-        do{
-            let encript = try JSONEncoder().encode(data)
-            return encript
-        }catch{
-            throw ErrorModle(message: "OOPS! something Went Wrong", technicalDetails:"Encoding Fail in TokenManager", statusCode: nil)
-        }
-    }
 }

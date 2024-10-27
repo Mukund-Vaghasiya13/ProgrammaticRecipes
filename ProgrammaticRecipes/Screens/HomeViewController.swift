@@ -11,10 +11,24 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        view.backgroundColor = .systemPink
+        ConfigureNavBar()
     }
     
+    private func ConfigureNavBar(){
+        view.backgroundColor = .systemBackground
+        navigationItem.hidesBackButton = true
+        //Debug
+        navigationItem.title = "Home"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        //Debug
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "logout", style: .plain, target: self, action: #selector(rightBarButtonAction))
+        
+    }
+    
+    @objc func rightBarButtonAction(){
+        TokenManager.shared.LogoutDeleteToken()
+        navigationController?.popViewController(animated: true)
+    }
 
     /*
     // MARK: - Navigation
