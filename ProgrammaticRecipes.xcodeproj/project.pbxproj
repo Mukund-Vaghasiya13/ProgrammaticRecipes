@@ -16,6 +16,7 @@
 		607BF45E2CCBBA3E00076067 /* RRTextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607BF45D2CCBBA3E00076067 /* RRTextButton.swift */; };
 		607BF4602CCBBC9200076067 /* RRBodyLable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607BF45F2CCBBC9200076067 /* RRBodyLable.swift */; };
 		607BF4622CCBC18600076067 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607BF4612CCBC18600076067 /* SignUpViewController.swift */; };
+		60B38FAE2CCFA98C002FAAB6 /* RRHeadingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B38FAD2CCFA98C002FAAB6 /* RRHeadingLabel.swift */; };
 		60C56F162CCF4325009BE9F6 /* RRImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C56F152CCF4325009BE9F6 /* RRImage.swift */; };
 		60C56F192CCF457E009BE9F6 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C56F182CCF457E009BE9F6 /* ProfileViewController.swift */; };
 		60C7D7712CC9FC5400D8B5D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C7D7702CC9FC5400D8B5D2 /* AppDelegate.swift */; };
@@ -38,6 +39,7 @@
 		607BF45D2CCBBA3E00076067 /* RRTextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RRTextButton.swift; sourceTree = "<group>"; };
 		607BF45F2CCBBC9200076067 /* RRBodyLable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RRBodyLable.swift; sourceTree = "<group>"; };
 		607BF4612CCBC18600076067 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		60B38FAD2CCFA98C002FAAB6 /* RRHeadingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RRHeadingLabel.swift; sourceTree = "<group>"; };
 		60C56F152CCF4325009BE9F6 /* RRImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RRImage.swift; sourceTree = "<group>"; };
 		60C56F182CCF457E009BE9F6 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		60C7D76D2CC9FC5400D8B5D2 /* ProgrammaticRecipes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProgrammaticRecipes.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -173,6 +175,7 @@
 			children = (
 				60DB2CC42CCA0E6800D3D9FE /* RRErrorLabel.swift */,
 				607BF45F2CCBBC9200076067 /* RRBodyLable.swift */,
+				60B38FAD2CCFA98C002FAAB6 /* RRHeadingLabel.swift */,
 			);
 			path = Label;
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				60C7D7862CC9FFCD00D8B5D2 /* LoginViewController.swift in Sources */,
+				60B38FAE2CCFA98C002FAAB6 /* RRHeadingLabel.swift in Sources */,
 				6056333E2CCCE6C100E9AD2D /* LoginModle.swift in Sources */,
 				60C7D78B2CCA013A00D8B5D2 /* RRTextField.swift in Sources */,
 				60409F602CCCBA390037F993 /* ViewController+EXT.swift in Sources */,

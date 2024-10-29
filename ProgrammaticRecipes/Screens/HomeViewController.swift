@@ -19,7 +19,6 @@ class HomeViewController: UIViewController {
     private func ConfigureNavBar(){
         view.backgroundColor = .systemBackground
         navigationItem.hidesBackButton = true
-        //Debug
         navigationItem.title = "Home"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(rightBarButtonAction))
