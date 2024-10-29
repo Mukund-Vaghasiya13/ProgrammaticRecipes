@@ -26,6 +26,12 @@ class ProfileViewController: UIViewController {
     private func ConfigureNavBar(){
         view.backgroundColor = .systemBackground
         navigationItem.title = locallyData?.user.username ?? ""
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .done, target: self, action: #selector(Logout))
+    }
+    
+    @objc func Logout(){
+        TokenManager.shared.LogoutDeleteToken()
+        navigationController?.popToRootViewController(animated: true)
     }
     
     private func LoadLocallyData(){
