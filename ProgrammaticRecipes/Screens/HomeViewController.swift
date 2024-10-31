@@ -10,10 +10,30 @@ import UIKit
 class HomeViewController: UIViewController {
 
     var image = UIImage(systemName: "person.fill")
+    var recipes:[Recipe] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         ConfigureNavBar()
+        LoadListOfRecipes()
+    }
+    
+    func LoadListOfRecipes(){
+        let endpoint = "http://localhost:3000/api/v1/Recipe/list?page=1"
+        let token = TokenManager.shared.GetToken()
+        let header = [
+            "Authorization":"Bearer \(token ?? "")"
+        ]
+        
+        NetworkHandler.shared.GetRequest(for: [Recipe].self, endpoint: endpoint, headers: header) { res in
+            switch res {
+            case .success(let success):
+                print(success)
+                break
+            case .failure(let failure):
+                print(failure)
+            }
+        }
     }
         
     private func ConfigureNavBar(){

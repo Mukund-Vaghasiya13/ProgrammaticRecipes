@@ -69,6 +69,59 @@ class NetworkHandler{
     }
     
     
+    
+    func GetRequest<T:Codable>(for:T.Type,endpoint:String,headers:[String:String]?,complition : @escaping (Result<T,ErrorModle>)-> Void){
+        guard let url = URL(string: endpoint) else{
+            let error = ErrorModle(message: "Network Issue", technicalDetails: "Url inValid", statusCode: nil)
+            complition(.failure(error))
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        if let headers {
+            for i in headers.keys{
+                request.setValue(headers[i], forHTTPHeaderField: i)
+            }
+        }
+        
+        let task = URLSession.shared.dataTask(with: request) { data, res, err in
+            if let err = err {
+                let error =  ErrorModle(message: "Network Call Fail", technicalDetails: err.localizedDescription, statusCode: nil)
+                complition(.failure(error))
+                return
+            }
+            
+            guard let data = data else{
+                let error =  ErrorModle(message: "Network Call Fail", technicalDetails: "Data Empety", statusCode: nil)
+                complition(.failure(error))
+                return
+            }
+            
+            if let res = res as? HTTPURLResponse {
+                 
+                //TODO: Refactoring....!
+                if res.statusCode == 200{
+                    do{
+                        let data = try JSONDecoder().decode(T.self, from: data)
+                        complition(.success(data))
+                    }catch{
+                        print("Decoding Fail")
+                    }
+                }else{
+                    do{
+                        let data = try JSONDecoder().decode(ErrorModle.self, from: data)
+                        complition(.failure(data))
+                    }catch{
+                        print("Decoding Fail")
+                    }
+                }
+            }
+        }
+        
+        task.resume()
+    }
+    
 //    private func DecodingData<T:Codable>(for:T.Type,Case:Bool,data:Data,complition: @escaping (Result<T,ErrorModle>)->Void){
 //        do{
 //            let data = try JSONDecoder().decode(T.self, from: data)

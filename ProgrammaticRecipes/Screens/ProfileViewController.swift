@@ -57,6 +57,9 @@ class ProfileViewController: UIViewController {
         satck.addArrangedSubview(editButton)
         satck.addArrangedSubview(AddButton)
         
+        editButton.addTarget(self, action: #selector(EditButtonAction), for: .touchUpInside)
+        AddButton.addTarget(self, action: #selector(AddButtonAction), for: .touchUpInside)
+        
         NSLayoutConstraint.activate([
         
             imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
@@ -75,5 +78,13 @@ class ProfileViewController: UIViewController {
             satck.heightAnchor.constraint(equalToConstant: 40)
 
         ])
+    }
+    
+    @objc func EditButtonAction(){
+        navigationController?.pushViewController(EditProfileViewController(), animated: true)
+    }
+    
+    @objc func AddButtonAction(){
+        navigationController?.pushViewController(AddRecipesViewController(), animated: true)
     }
 }
