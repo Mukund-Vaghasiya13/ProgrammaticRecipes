@@ -40,7 +40,7 @@ class RRImage: UIImageView {
         image = placeHolder
         translatesAutoresizingMaskIntoConstraints = false
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         layer.cornerRadius = frame.size.width / 2

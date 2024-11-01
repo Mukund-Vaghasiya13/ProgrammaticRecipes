@@ -14,7 +14,7 @@ class LoginViewController: UIViewController {
     var Errorlable = RRErrorLabel(text: "")
     var LoginButton = RRButton(with: "Login", BG: .systemGreen, FG: .white)
     var signUpButton = RRTextButton(with: "Create user!", also: .systemBlue, and: .systemGreen)
-    var orLabel = RRBodyLable(text: "Or", FG: .label)
+    var orLabel = RRBodyLable(text: "Or", FG: .label,NoOFLine: 1)
     
     override func viewDidLoad() {
         super.viewDidLoad()

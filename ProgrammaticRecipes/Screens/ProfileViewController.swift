@@ -11,7 +11,7 @@ class ProfileViewController: UIViewController {
 
     private var locallyData:LoginModle!
     var imageView = RRImage(frame: .zero)
-    var bodyLable = RRBodyLable(text: "", FG: .systemGray)
+    var bodyLable = RRBodyLable(text: "", FG: .systemGray,NoOFLine: 1)
     var satck = UIStackView()
     var editButton = RRButton(with: "Edit Profile", BG: .black, FG: .white)
     var AddButton = RRButton(with: "Add Recipe", BG: .black, FG: .white)

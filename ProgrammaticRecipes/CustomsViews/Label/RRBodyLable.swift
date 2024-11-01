@@ -18,16 +18,19 @@ class RRBodyLable: UILabel {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init(text title:String,FG textColor:UIColor){
+    init(text title:String,FG textColor:UIColor,NoOFLine:Int){
         super.init(frame: .zero)
         self.text = title
         self.textColor = textColor
+        numberOfLines = NoOFLine
         ConfigureLable()
     }
     
     private func ConfigureLable(){
         translatesAutoresizingMaskIntoConstraints = false
         font = UIFont.systemFont(ofSize: 16)
+        minimumScaleFactor = 0.8
+        lineBreakMode = .byTruncatingTail
     }
 
 }

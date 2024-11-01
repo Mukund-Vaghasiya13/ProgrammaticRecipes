@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Recipe:Codable{
+struct Recipe:Codable,Hashable{
     var _id:String?
     var userId:String?
     var title:String?

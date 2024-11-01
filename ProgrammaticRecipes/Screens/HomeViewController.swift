@@ -9,13 +9,21 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
+    enum Section{
+        case Main
+    }
+    
     var image = UIImage(systemName: "person.fill")
     var recipes:[Recipe] = []
+    var dataSource:UITableViewDiffableDataSource<Section,Recipe>!
+    var TableView:UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         ConfigureNavBar()
         LoadListOfRecipes()
+        ConfigureTableView()
+        ConfigureDataSource()
     }
     
     func LoadListOfRecipes(){
@@ -29,6 +37,8 @@ class HomeViewController: UIViewController {
             switch res {
             case .success(let success):
                 print(success)
+                self.recipes = success
+                self.UpdateData()
                 break
             case .failure(let failure):
                 print(failure)
@@ -43,6 +53,31 @@ class HomeViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(rightBarButtonAction))
         navigationItem.rightBarButtonItem?.tintColor = .black
+        
+    }
+    
+    private func ConfigureTableView(){
+        TableView = UITableView(frame: view.frame)
+        view.addSubview(TableView)
+        TableView.register(RecipeListCellTableViewCell.self, forCellReuseIdentifier: RecipeListCellTableViewCell.reUseId)
+        TableView.rowHeight = 250
+    }
+    
+    private func ConfigureDataSource(){
+        dataSource = UITableViewDiffableDataSource(tableView: TableView, cellProvider: { tableView, indexPath, recipe in
+            let cell = tableView.dequeueReusableCell(withIdentifier: RecipeListCellTableViewCell.reUseId, for: indexPath) as? RecipeListCellTableViewCell
+            cell?.Set(ImageUrl: recipe.image, des: recipe.description)
+            return cell
+        })
+    }
+    
+    private func UpdateData(){
+        var snapshot = NSDiffableDataSourceSnapshot<Section,Recipe>()
+        snapshot.appendSections([.Main])
+        snapshot.appendItems(recipes)
+        DispatchQueue.main.async{
+            self.dataSource.apply(snapshot,animatingDifferences: true)
+        }
         
     }
     
