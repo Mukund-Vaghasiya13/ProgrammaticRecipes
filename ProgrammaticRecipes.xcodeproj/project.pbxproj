@@ -10,6 +10,8 @@
 		600606FA2CD496550008BCE6 /* RecipeListCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600606F92CD496550008BCE6 /* RecipeListCellTableViewCell.swift */; };
 		6037D7942CCD25E900CEA984 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6037D7932CCD25E900CEA984 /* HomeViewController.swift */; };
 		60409F602CCCBA390037F993 /* ViewController+EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60409F5F2CCCBA390037F993 /* ViewController+EXT.swift */; };
+		604FD2F82CD734CA0000A2F1 /* RRRecipeImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604FD2F72CD734CA0000A2F1 /* RRRecipeImageView.swift */; };
+		604FD2FC2CD746DB0000A2F1 /* RRTextArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604FD2FB2CD746DB0000A2F1 /* RRTextArea.swift */; };
 		6056333E2CCCE6C100E9AD2D /* LoginModle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6056333D2CCCE6C100E9AD2D /* LoginModle.swift */; };
 		605633402CCCE79700E9AD2D /* ErrorModle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6056333F2CCCE79700E9AD2D /* ErrorModle.swift */; };
 		605633422CCCEFAD00E9AD2D /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605633412CCCEFAD00E9AD2D /* NetworkController.swift */; };
@@ -21,7 +23,7 @@
 		60A6F41D2CD3ADC500E3C5E6 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A6F41C2CD3ADC500E3C5E6 /* EditProfileViewController.swift */; };
 		60A6F41F2CD3ADED00E3C5E6 /* AddRecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A6F41E2CD3ADED00E3C5E6 /* AddRecipesViewController.swift */; };
 		60B38FAE2CCFA98C002FAAB6 /* RRHeadingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B38FAD2CCFA98C002FAAB6 /* RRHeadingLabel.swift */; };
-		60C56F162CCF4325009BE9F6 /* RRImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C56F152CCF4325009BE9F6 /* RRImage.swift */; };
+		60C56F162CCF4325009BE9F6 /* RRProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C56F152CCF4325009BE9F6 /* RRProfileImage.swift */; };
 		60C56F192CCF457E009BE9F6 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C56F182CCF457E009BE9F6 /* ProfileViewController.swift */; };
 		60C7D7712CC9FC5400D8B5D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C7D7702CC9FC5400D8B5D2 /* AppDelegate.swift */; };
 		60C7D7732CC9FC5400D8B5D2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C7D7722CC9FC5400D8B5D2 /* SceneDelegate.swift */; };
@@ -37,6 +39,8 @@
 		600606F92CD496550008BCE6 /* RecipeListCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListCellTableViewCell.swift; sourceTree = "<group>"; };
 		6037D7932CCD25E900CEA984 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		60409F5F2CCCBA390037F993 /* ViewController+EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+EXT.swift"; sourceTree = "<group>"; };
+		604FD2F72CD734CA0000A2F1 /* RRRecipeImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RRRecipeImageView.swift; sourceTree = "<group>"; };
+		604FD2FB2CD746DB0000A2F1 /* RRTextArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RRTextArea.swift; sourceTree = "<group>"; };
 		6056333D2CCCE6C100E9AD2D /* LoginModle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModle.swift; sourceTree = "<group>"; };
 		6056333F2CCCE79700E9AD2D /* ErrorModle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorModle.swift; sourceTree = "<group>"; };
 		605633412CCCEFAD00E9AD2D /* NetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
@@ -48,7 +52,7 @@
 		60A6F41C2CD3ADC500E3C5E6 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		60A6F41E2CD3ADED00E3C5E6 /* AddRecipesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecipesViewController.swift; sourceTree = "<group>"; };
 		60B38FAD2CCFA98C002FAAB6 /* RRHeadingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RRHeadingLabel.swift; sourceTree = "<group>"; };
-		60C56F152CCF4325009BE9F6 /* RRImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RRImage.swift; sourceTree = "<group>"; };
+		60C56F152CCF4325009BE9F6 /* RRProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RRProfileImage.swift; sourceTree = "<group>"; };
 		60C56F182CCF457E009BE9F6 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		60C7D76D2CC9FC5400D8B5D2 /* ProgrammaticRecipes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProgrammaticRecipes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60C7D7702CC9FC5400D8B5D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -111,7 +115,8 @@
 		60C56F172CCF4348009BE9F6 /* Image */ = {
 			isa = PBXGroup;
 			children = (
-				60C56F152CCF4325009BE9F6 /* RRImage.swift */,
+				60C56F152CCF4325009BE9F6 /* RRProfileImage.swift */,
+				604FD2F72CD734CA0000A2F1 /* RRRecipeImageView.swift */,
 			);
 			path = Image;
 			sourceTree = "<group>";
@@ -186,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				60C7D78A2CCA013A00D8B5D2 /* RRTextField.swift */,
+				604FD2FB2CD746DB0000A2F1 /* RRTextArea.swift */,
 			);
 			path = TextField;
 			sourceTree = "<group>";
@@ -291,6 +297,7 @@
 				60A6F41D2CD3ADC500E3C5E6 /* EditProfileViewController.swift in Sources */,
 				60C56F192CCF457E009BE9F6 /* ProfileViewController.swift in Sources */,
 				60C7D7732CC9FC5400D8B5D2 /* SceneDelegate.swift in Sources */,
+				604FD2F82CD734CA0000A2F1 /* RRRecipeImageView.swift in Sources */,
 				607BF45E2CCBBA3E00076067 /* RRTextButton.swift in Sources */,
 				607BF4622CCBC18600076067 /* SignUpViewController.swift in Sources */,
 				607BF4602CCBBC9200076067 /* RRBodyLable.swift in Sources */,
@@ -299,8 +306,9 @@
 				605633422CCCEFAD00E9AD2D /* NetworkController.swift in Sources */,
 				60A6F41B2CD3AAE600E3C5E6 /* Recipe.swift in Sources */,
 				60A6F41F2CD3ADED00E3C5E6 /* AddRecipesViewController.swift in Sources */,
+				604FD2FC2CD746DB0000A2F1 /* RRTextArea.swift in Sources */,
 				605633442CCCF20400E9AD2D /* TokenManager.swift in Sources */,
-				60C56F162CCF4325009BE9F6 /* RRImage.swift in Sources */,
+				60C56F162CCF4325009BE9F6 /* RRProfileImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

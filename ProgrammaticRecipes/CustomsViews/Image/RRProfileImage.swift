@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RRImage: UIImageView {
+class RRUserAvtarImage: UIImageView {
     
     private var placeHolder = UIImage(systemName: "person.fill")
     

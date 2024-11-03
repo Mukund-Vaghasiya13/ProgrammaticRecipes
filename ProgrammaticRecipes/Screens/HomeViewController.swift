@@ -57,7 +57,7 @@ class HomeViewController: UIViewController {
     }
     
     private func ConfigureTableView(){
-        TableView = UITableView(frame: view.frame)
+        TableView = UITableView(frame: view.frame,style: .insetGrouped)
         view.addSubview(TableView)
         TableView.register(RecipeListCellTableViewCell.self, forCellReuseIdentifier: RecipeListCellTableViewCell.reUseId)
         TableView.rowHeight = 250
