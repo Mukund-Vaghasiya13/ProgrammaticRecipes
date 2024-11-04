@@ -69,6 +69,46 @@ class AddRecipesViewController: UIViewController {
             UplodeButton.heightAnchor.constraint(equalToConstant: 50),
         
         ])
+        
+        UplodeButton.addTarget(self, action: #selector(UplodeData), for: .touchUpInside)
+    }
+    
+    
+    @objc func UplodeData(){
+        let token = TokenManager.shared.GetToken()
+        
+        let header = [
+            "Authorization":"Bearer \(token ?? "")"
+        ]
+        
+        guard let imageData = ImageView.image?.jpegData(compressionQuality: 0.8) else{
+            //TODO: alert or message
+            print("/n/n Image Data")
+            return
+        }
+        
+        let JPEGData = ImageRequest(attachment: imageData, fileName: "RecipesImage")
+        
+        //TODO: Fields Validation
+        
+        let fields = [
+            "title":TitleTextField.text ?? "",
+            "description":discreption.text ?? "",
+            "ingredients":ingredients.text ?? "",
+            "instructions":instructions.text ?? ""
+        ]
+        
+        let imageAndField = Payload(imageData: JPEGData, fields: fields)
+        
+        NetworkHandler.shared.MultiparFormRequest(for: Recipe.self, endpoint: "http://localhost:3000/api/v1/Recipe/createRecipes", headers: header, payload: imageAndField) { res in
+            switch res {
+            case .success(let success):
+                print(success)
+            case .failure(let failure):
+                print(failure)
+            }
+        }
+        
     }
     
     private func ScrollViewAndContentView(){
@@ -93,6 +133,8 @@ class AddRecipesViewController: UIViewController {
             ContentView.heightAnchor.constraint(equalTo:scrollview.heightAnchor,multiplier: 1.35),
     
         ])
+        
+        
     }
     
     
