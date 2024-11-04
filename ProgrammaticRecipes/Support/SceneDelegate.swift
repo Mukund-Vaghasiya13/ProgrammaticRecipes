@@ -24,7 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     //MARK: Configure Navigation Logic
     func CreateNavigationController()->UINavigationController{
-        let nav = UINavigationController(rootViewController: AddRecipesViewController())
+        let nav = UINavigationController(rootViewController: LoginViewController())
         return nav
     }
 

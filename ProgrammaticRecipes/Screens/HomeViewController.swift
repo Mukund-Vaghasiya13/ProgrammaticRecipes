@@ -17,23 +17,27 @@ class HomeViewController: UIViewController {
     var recipes:[Recipe] = []
     var dataSource:UITableViewDiffableDataSource<Section,Recipe>!
     var TableView:UITableView!
+    var page = 1
 
     override func viewDidLoad() {
         super.viewDidLoad()
         ConfigureNavBar()
-        LoadListOfRecipes()
+        LoadListOfRecipes(page: page)
         ConfigureTableView()
         ConfigureDataSource()
     }
     
-    func LoadListOfRecipes(){
-        let endpoint = "http://localhost:3000/api/v1/Recipe/list?page=1"
+    func LoadListOfRecipes(page:Int){
+        let endpoint = "http://localhost:3000/api/v1/Recipe/list?page=\(page)"
         let token = TokenManager.shared.GetToken()
         let header = [
             "Authorization":"Bearer \(token ?? "")"
         ]
         
         NetworkHandler.shared.GetRequest(for: [Recipe].self, endpoint: endpoint, headers: header) { res in
+            DispatchQueue.main.async {
+                self.TableView.refreshControl?.endRefreshing()
+            }
             switch res {
             case .success(let success):
                 print(success)
@@ -61,6 +65,17 @@ class HomeViewController: UIViewController {
         view.addSubview(TableView)
         TableView.register(RecipeListCellTableViewCell.self, forCellReuseIdentifier: RecipeListCellTableViewCell.reUseId)
         TableView.rowHeight = 250
+        
+        
+        let refreshView = UIRefreshControl()
+        refreshView.addTarget(self, action: #selector(ReloadData), for: .valueChanged)
+        TableView.refreshControl = refreshView
+    }
+    
+    
+    @objc func ReloadData(){
+        if recipes.count ==  10 { page += 1}
+        LoadListOfRecipes(page: self.page)
     }
     
     private func ConfigureDataSource(){
