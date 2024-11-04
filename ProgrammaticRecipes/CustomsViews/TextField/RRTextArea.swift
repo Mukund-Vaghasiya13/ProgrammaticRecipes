@@ -1,29 +1,16 @@
-//
-//  RRTextArea.swift
-//  ProgrammaticRecipes
-//
-//  Created by Mukund vaghasiya  on 03/11/24.
-//
-
 import UIKit
 
-class RRTextArea: UITextView {
+class RRTextArea: UITextView, UITextViewDelegate {
     
     private let placeholderText: String
     
     init(placeholder: String) {
         self.placeholderText = placeholder
         super.init(frame: .zero, textContainer: nil)
-        self.text = placeholderText
         configureTextView()
+        addPlaceholder()
         
-        // Add observer to handle placeholder text
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(textDidChange),
-            name: UITextView.textDidChangeNotification,
-            object: self
-        )
+        self.delegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -32,27 +19,31 @@ class RRTextArea: UITextView {
     
     private func configureTextView() {
         translatesAutoresizingMaskIntoConstraints = false
-        self.textColor = .lightGray
-        self.font = UIFont.systemFont(ofSize: 18)
+        font = UIFont.systemFont(ofSize: 18)
         isScrollEnabled = true
-        layer.borderWidth = 1
+        layer.borderWidth = 0.5
+        layer.borderColor = UIColor.systemGray.cgColor
         layer.cornerRadius = 5
+        textContainerInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
     }
     
-
-    @objc private func textDidChange() {
-        // Remove placeholder when user starts typing
-        if text.isEmpty {
-            text = placeholderText
-            textColor = .lightGray
-        } else if textColor == .lightGray {
-            text = ""
-            textColor = .black
+    private func addPlaceholder() {
+        self.text = placeholderText
+        self.textColor = .lightGray
+    }
+  
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        // Clear the placeholder text when the user starts editing
+        if textView.text == placeholderText && textView.textColor == .lightGray {
+            textView.text = nil
+            textView.textColor = .black // Set to the actual text color
         }
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
+    func textViewDidEndEditing(_ textView: UITextView) {
+        // Show the placeholder if the text view is empty
+        if textView.text.isEmpty {
+            addPlaceholder()
+        }
     }
 }
-
