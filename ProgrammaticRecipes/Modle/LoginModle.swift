@@ -8,10 +8,10 @@
 import Foundation
 
 struct LoginModle:Codable{
-    let message:String?
-    let Logintoken:String?
-    let statusCode:Int?
-    let user:User
+    var message:String?
+    var Logintoken:String?
+    var statusCode:Int?
+    var user:User
 }
 
 struct User:Codable{

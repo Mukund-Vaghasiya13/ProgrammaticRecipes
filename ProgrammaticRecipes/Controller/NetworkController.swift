@@ -14,8 +14,8 @@ struct ImageRequest {
 }
 
 struct Payload{
-    var imageData:ImageRequest
-    var fields:[String:String]
+    var imageData:ImageRequest?
+    var fields:[String:String]?
 }
 
 class NetworkHandler{
@@ -157,36 +157,40 @@ class NetworkHandler{
         
         var requestData = Data()
         
-        for (key,value) in payload.fields{
-            //Countent-Boundary
-            requestData.append("--\(boundary)\r\n" .data(using: .utf8)!)
-            
-            //Key Of Content-Boundary
-            requestData.append("content-disposition: form-data; name=\"\(key)\" \(lineBreak + lineBreak)" .data(using: .utf8)!)
-            
-            //Value Of Content-Boundary
-            requestData.append("\(value)\(lineBreak)".data(using: .utf8)!)
+        if let fields = payload.fields{
+            for (key,value) in fields{
+                //Countent-Boundary
+                requestData.append("--\(boundary)\r\n" .data(using: .utf8)!)
+                
+                //Key Of Content-Boundary
+                requestData.append("content-disposition: form-data; name=\"\(key)\" \(lineBreak + lineBreak)" .data(using: .utf8)!)
+                
+                //Value Of Content-Boundary
+                requestData.append("\(value)\(lineBreak)".data(using: .utf8)!)
+            }
         }
         
         //MARK: Add image file data
         //Content start
-        requestData.append("--\(boundary)\(lineBreak)".data(using: .utf8)!)
-        
-        //Key
-        requestData.append("Content-Disposition: form-data; name=\"\(payload.imageData.fileName)\"; filename=\"image.jpg\"\(lineBreak)".data(using: .utf8)!)
-        requestData.append("Content-Type: image/jpeg\(lineBreak)\(lineBreak)".data(using: .utf8)!)
-        
-        //Value
-        requestData.append(payload.imageData.attachment)
-        requestData.append("\(lineBreak)".data(using: .utf8)!)
+        if let imageData = payload.imageData {
+            requestData.append("--\(boundary)\(lineBreak)".data(using: .utf8)!)
+            
+            //Key
+            requestData.append("Content-Disposition: form-data; name=\"\(imageData.fileName)\"; filename=\"image.jpg\"\(lineBreak)".data(using: .utf8)!)
+            requestData.append("Content-Type: image/jpeg\(lineBreak)\(lineBreak)".data(using: .utf8)!)
+            
+            //Value
+            requestData.append(imageData.attachment)
+            requestData.append("\(lineBreak)".data(using: .utf8)!)
+        }
         
         
         //End Main 🫡
         requestData.append("--\(boundary)--\(lineBreak)".data(using: .utf8)!)
         
         //MARK: DEBUG BreakPoint
-//        let str = String(decoding: requestData, as: UTF8.self)
-//        print(str)
+        //        let str = String(decoding: requestData, as: UTF8.self)
+        //        print(str)
         
         urlRequest.addValue("\(requestData.count)", forHTTPHeaderField: "content-length")
         urlRequest.httpBody = requestData

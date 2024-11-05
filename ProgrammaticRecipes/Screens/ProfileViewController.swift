@@ -16,16 +16,22 @@ class ProfileViewController: UIViewController {
     var editButton = RRButton(with: "Edit Profile", BG: .black, FG: .white)
     var AddButton = RRButton(with: "Add Recipe", BG: .black, FG: .white)
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        LoadLocallyData()
+      
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        LoadLocallyData()
         ConfigureNavBar()
         ConfigureView()
     }
+    
+    
 
     private func ConfigureNavBar(){
         view.backgroundColor = .systemBackground
-        navigationItem.title = locallyData?.user.username ?? ""
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .done, target: self, action: #selector(Logout))
     }
     
@@ -37,7 +43,9 @@ class ProfileViewController: UIViewController {
     private func LoadLocallyData(){
         let data = TokenManager.shared.GetTokenDataLocally()
         if let data = data{
-            locallyData = data
+            navigationItem.title = data.user.username ?? ""
+            bodyLable.text = data.user.email
+            imageView.DownloadImage(url:data.user.profilePicture ?? "")
         }
     }
     
@@ -47,8 +55,8 @@ class ProfileViewController: UIViewController {
         view.addSubview(satck)
         
         satck.translatesAutoresizingMaskIntoConstraints = false
-        bodyLable.text = locallyData.user.email
-        imageView.DownloadImage(url: locallyData.user.profilePicture ?? "")
+        
+        
         
         satck.alignment = .fill   // Make buttons fill the stack view's height
         satck.distribution = .fillEqually  // Evenly space buttons

@@ -15,6 +15,8 @@ class EditProfileViewController: UIViewController {
     var RecipyUserProfile = RRUserAvtarImage(frame: .zero)
     var updateButton = RRButton(with: "Save Changes", BG: .systemGreen, FG: .white)
     var imagePicker:PHPickerViewController!
+    var userAndTokenData:LoginModle!
+    var isAvtarChanged = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +37,7 @@ class EditProfileViewController: UIViewController {
             email.text = userdata.user.email
             username.text = userdata.user.username
             RecipyUserProfile.DownloadImage(url: userdata.user.profilePicture ?? "")
+            userAndTokenData = userdata
         }else{
             //Show Error And Dissmiss View
             print("User Token Or Local data not found")
@@ -75,8 +78,82 @@ class EditProfileViewController: UIViewController {
         
         RecipyUserProfile.isUserInteractionEnabled = true
         RecipyUserProfile.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(OpenPhotos)))
+        
+        updateButton.addTarget(self, action: #selector(UplodeData), for: .touchUpInside)
     }
     
+    @objc func UplodeData(){
+        
+        let token = TokenManager.shared.GetToken()
+        
+        let header = [
+            "Authorization":"Bearer \(token ?? "")"
+        ]
+        
+        if isAvtarChanged{
+            UpdateProfilePic(header: header)
+        }
+        UpdateFields(header: header)
+    }
+    
+    //MARK: Combine This
+    private func UpdateFields(header:[String:String]){
+        let url = "http://localhost:3000/api/v1/User/update/fields"
+        let fields = [
+            "username":username.text ?? "",
+            "email":email.text ?? ""
+        ]
+        
+        let data = try! JSONEncoder().encode(fields)
+        
+        NetworkHandler.shared.PostRequest(for: User.self, endpoint: url, Body:data , header: header) { res in
+            switch res {
+            case .success(let success):
+                print(success)
+                guard var userAndTokenData = self.userAndTokenData else {
+                    print("Error💩")
+                    return
+                }
+                TokenManager.shared.LogoutDeleteToken()
+                userAndTokenData.user = success
+                TokenManager.shared.SetTokenDataLocally(loginData: userAndTokenData)
+            case .failure(let failure):
+                print(failure)
+                break
+            }
+        }
+    }
+    //MARK: and this
+    private func UpdateProfilePic(header:[String:String]){
+        
+        guard let imageData = RecipyUserProfile.image?.jpegData(compressionQuality: 0.8) else{
+            //TODO: alert or message
+            print("\n\n Image Data")
+            self.ShowAlert(message:"please Uplode Image", title:"Image Required")
+            return
+        }
+        
+        let JPEGData = ImageRequest(attachment: imageData, fileName: "RecipyUserProfile")
+        
+        //TODO: Fields Validation
+        let imageAndField = Payload(imageData: JPEGData, fields: nil)
+        
+        NetworkHandler.shared.MultiparFormRequest(for: User.self, endpoint: "http://localhost:3000/api/v1/User/update", headers: header, payload: imageAndField) { res in
+            switch res {
+            case .success(let success):
+                print(success)
+                if var userAndTokenData = self.userAndTokenData{
+                    TokenManager.shared.LogoutDeleteToken()
+                    userAndTokenData.user = success
+                    TokenManager.shared.SetTokenDataLocally(loginData: userAndTokenData)
+                }
+            case .failure(let failure):
+                DispatchQueue.main.async{
+                    self.ShowAlert(message: failure.technicalDetails ?? "Oops Something went wrong", title: failure.message ?? "")
+                }
+            }
+        }
+    }
     
     @objc func OpenPhotos(){
         var configure = PHPickerConfiguration()
@@ -108,6 +185,7 @@ extension EditProfileViewController:PHPickerViewControllerDelegate {
                 
                 DispatchQueue.main.async {
                     self.RecipyUserProfile.image = image
+                    self.isAvtarChanged = true
                 }
             }
         }
