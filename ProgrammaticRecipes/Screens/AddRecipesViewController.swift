@@ -83,7 +83,8 @@ class AddRecipesViewController: UIViewController {
         
         guard let imageData = ImageView.image?.jpegData(compressionQuality: 0.8) else{
             //TODO: alert or message
-            print("/n/n Image Data")
+            print("\n\n Image Data")
+            self.ShowAlert(message:"please Uplode Image", title:"Image Required")
             return
         }
         
@@ -105,7 +106,9 @@ class AddRecipesViewController: UIViewController {
             case .success(let success):
                 print(success)
             case .failure(let failure):
-                print(failure)
+                DispatchQueue.main.async{
+                    self.ShowAlert(message: failure.technicalDetails ?? "Oops Something went wrong", title: failure.message ?? "")
+                }
             }
         }
         

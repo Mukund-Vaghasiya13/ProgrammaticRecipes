@@ -185,8 +185,8 @@ class NetworkHandler{
         requestData.append("--\(boundary)--\(lineBreak)".data(using: .utf8)!)
         
         //MARK: DEBUG BreakPoint
-        let str = String(decoding: requestData, as: UTF8.self)
-        print(str)
+//        let str = String(decoding: requestData, as: UTF8.self)
+//        print(str)
         
         urlRequest.addValue("\(requestData.count)", forHTTPHeaderField: "content-length")
         urlRequest.httpBody = requestData

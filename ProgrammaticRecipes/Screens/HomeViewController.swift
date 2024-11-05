@@ -40,7 +40,6 @@ class HomeViewController: UIViewController {
             }
             switch res {
             case .success(let success):
-                print(success)
                 self.recipes = success
                 self.UpdateData()
                 break
@@ -61,10 +60,11 @@ class HomeViewController: UIViewController {
     }
     
     private func ConfigureTableView(){
-        TableView = UITableView(frame: view.frame,style: .insetGrouped)
+        TableView = UITableView(frame: view.frame,style: .plain)
         view.addSubview(TableView)
         TableView.register(RecipeListCellTableViewCell.self, forCellReuseIdentifier: RecipeListCellTableViewCell.reUseId)
         TableView.rowHeight = 250
+        TableView.showsVerticalScrollIndicator = false
         
         
         let refreshView = UIRefreshControl()
