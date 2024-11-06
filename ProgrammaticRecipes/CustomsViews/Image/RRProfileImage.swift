@@ -7,6 +7,7 @@
 
 import UIKit
 
+#error("Cache Image")
 class RRUserAvtarImage: UIImageView {
     
     private var placeHolder = UIImage(systemName: "person.fill")

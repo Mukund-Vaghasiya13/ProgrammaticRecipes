@@ -67,6 +67,50 @@ class SignUpViewController: UIViewController {
             orLabel.widthAnchor.constraint(equalToConstant: 23),
         
         ])
+        
+        LoginButton.addTarget(self, action: #selector(SingUpAction), for: .touchUpInside)
+    }
+    
+    @objc func SingUpAction(){
+        if Validation(){
+            NetworkCall()
+        }
+    }
+    
+    func NetworkCall(){
+        let url = "http://localhost:3000/api/v1/User/register"
+        let body = [
+            "email":email.text!,
+            "username":username.text!,//MARK: Validating Before Call
+            "password":password.text!
+        ]
+        
+        do{
+            let data =  try JSONEncoder().encode(body)
+            NetworkHandler.shared.PostRequest(for: LoginModle.self, endpoint: url, Body: data, header: nil) { result in
+                switch result{
+                case .success(let data):
+                    print(data)
+                    TokenManager.shared.SetTokenDataLocally(loginData: data)
+                    DispatchQueue.main.async{
+                        self.navigationController?.pushViewController(HomeViewController(), animated: true)
+                    }
+                        break
+                case .failure(let err):
+                    print(err.technicalDetails ?? "FAIL🤧")
+                    if err.statusCode == nil{
+                        DispatchQueue.main.async {
+                            self.ShowAlert(message: err.technicalDetails ?? "nil", title: err.message ?? "nil")
+                        }
+                    }else{
+                        DispatchQueue.main.async {self.Errorlable.text = err.message}
+                    }
+                      break
+                }
+            }
+        }catch{
+            print("Encode Fail")
+        }
     }
     
     private func ViewHandler(){
@@ -80,19 +124,23 @@ class SignUpViewController: UIViewController {
         }
     }
     
-    private func  Validation(){
+    private func  Validation()->Bool{
         if let usenametext = username.text, usenametext.isEmpty{
             Errorlable.text = "Enter username"
             username.becomeFirstResponder()
+            return false
         } else if let passwordtext = password.text,passwordtext.isEmpty{
             Errorlable.text = "Enter Password"
             password.becomeFirstResponder()
+            return false
         }else if let emailtext = email.text,emailtext.isEmpty{
             Errorlable.text = "Enter Email"
             password.becomeFirstResponder()
+            return false
         }
         else{
             Errorlable.text = ""
+            return true
         }
     }
     
@@ -101,7 +149,9 @@ class SignUpViewController: UIViewController {
 
 extension SignUpViewController:UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        Validation()
+        if Validation(){
+            NetworkCall()
+        }
         return true
     }
 }

@@ -82,49 +82,13 @@ class EditProfileViewController: UIViewController {
         updateButton.addTarget(self, action: #selector(UplodeData), for: .touchUpInside)
     }
     
-    @objc func UplodeData(){
+     @objc func UplodeData(){
         
         let token = TokenManager.shared.GetToken()
         
         let header = [
             "Authorization":"Bearer \(token ?? "")"
         ]
-        
-        if isAvtarChanged{
-            UpdateProfilePic(header: header)
-        }
-        UpdateFields(header: header)
-    }
-    
-    //MARK: Combine This
-    private func UpdateFields(header:[String:String]){
-        let url = "http://localhost:3000/api/v1/User/update/fields"
-        let fields = [
-            "username":username.text ?? "",
-            "email":email.text ?? ""
-        ]
-        
-        let data = try! JSONEncoder().encode(fields)
-        
-        NetworkHandler.shared.PostRequest(for: User.self, endpoint: url, Body:data , header: header) { res in
-            switch res {
-            case .success(let success):
-                print(success)
-                guard var userAndTokenData = self.userAndTokenData else {
-                    print("Error💩")
-                    return
-                }
-                TokenManager.shared.LogoutDeleteToken()
-                userAndTokenData.user = success
-                TokenManager.shared.SetTokenDataLocally(loginData: userAndTokenData)
-            case .failure(let failure):
-                print(failure)
-                break
-            }
-        }
-    }
-    //MARK: and this
-    private func UpdateProfilePic(header:[String:String]){
         
         guard let imageData = RecipyUserProfile.image?.jpegData(compressionQuality: 0.8) else{
             //TODO: alert or message
@@ -134,9 +98,12 @@ class EditProfileViewController: UIViewController {
         }
         
         let JPEGData = ImageRequest(attachment: imageData, fileName: "RecipyUserProfile")
-        
+        let fields = [
+            "username":username.text ?? "",
+            "email":email.text ?? ""
+        ]
         //TODO: Fields Validation
-        let imageAndField = Payload(imageData: JPEGData, fields: nil)
+        let imageAndField = Payload(imageData: JPEGData, fields: fields)
         
         NetworkHandler.shared.MultiparFormRequest(for: User.self, endpoint: "http://localhost:3000/api/v1/User/update", headers: header, payload: imageAndField) { res in
             switch res {

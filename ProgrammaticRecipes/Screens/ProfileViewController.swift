@@ -28,7 +28,6 @@ class ProfileViewController: UIViewController {
         ConfigureView()
     }
     
-    
 
     private func ConfigureNavBar(){
         view.backgroundColor = .systemBackground
