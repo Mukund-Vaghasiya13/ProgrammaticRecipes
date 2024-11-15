@@ -16,6 +16,7 @@
 		605633402CCCE79700E9AD2D /* ErrorModle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6056333F2CCCE79700E9AD2D /* ErrorModle.swift */; };
 		605633422CCCEFAD00E9AD2D /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605633412CCCEFAD00E9AD2D /* NetworkController.swift */; };
 		605633442CCCF20400E9AD2D /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605633432CCCF20400E9AD2D /* TokenManager.swift */; };
+		605CABC52CDB81C8000A938B /* RecipeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605CABC42CDB81C8000A938B /* RecipeDetailViewController.swift */; };
 		607BF45E2CCBBA3E00076067 /* RRTextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607BF45D2CCBBA3E00076067 /* RRTextButton.swift */; };
 		607BF4602CCBBC9200076067 /* RRBodyLable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607BF45F2CCBBC9200076067 /* RRBodyLable.swift */; };
 		607BF4622CCBC18600076067 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607BF4612CCBC18600076067 /* SignUpViewController.swift */; };
@@ -45,6 +46,7 @@
 		6056333F2CCCE79700E9AD2D /* ErrorModle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorModle.swift; sourceTree = "<group>"; };
 		605633412CCCEFAD00E9AD2D /* NetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
 		605633432CCCF20400E9AD2D /* TokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenManager.swift; sourceTree = "<group>"; };
+		605CABC42CDB81C8000A938B /* RecipeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewController.swift; sourceTree = "<group>"; };
 		607BF45D2CCBBA3E00076067 /* RRTextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RRTextButton.swift; sourceTree = "<group>"; };
 		607BF45F2CCBBC9200076067 /* RRBodyLable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RRBodyLable.swift; sourceTree = "<group>"; };
 		607BF4612CCBC18600076067 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				60C56F182CCF457E009BE9F6 /* ProfileViewController.swift */,
 				60A6F41C2CD3ADC500E3C5E6 /* EditProfileViewController.swift */,
 				60A6F41E2CD3ADED00E3C5E6 /* AddRecipesViewController.swift */,
+				605CABC42CDB81C8000A938B /* RecipeDetailViewController.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -303,6 +306,7 @@
 				607BF4602CCBBC9200076067 /* RRBodyLable.swift in Sources */,
 				605633402CCCE79700E9AD2D /* ErrorModle.swift in Sources */,
 				60DB2CC82CCA152200D3D9FE /* RRButton.swift in Sources */,
+				605CABC52CDB81C8000A938B /* RecipeDetailViewController.swift in Sources */,
 				605633422CCCEFAD00E9AD2D /* NetworkController.swift in Sources */,
 				60A6F41B2CD3AAE600E3C5E6 /* Recipe.swift in Sources */,
 				60A6F41F2CD3ADED00E3C5E6 /* AddRecipesViewController.swift in Sources */,

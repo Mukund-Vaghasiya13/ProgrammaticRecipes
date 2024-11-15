@@ -30,19 +30,26 @@ class RecipeListCellTableViewCell: UITableViewCell {
     }
     
     private func DownloadImage(url:String){
-        guard let url = URL(string: url) else{ return }
-        
-        URLSession.shared.dataTask(with:url) { data, res, err in
-            if err != nil { return }
-            guard let _ = res else { return }
-            guard let data = data else { return }
-            
-            let img = UIImage(data: data)
-            DispatchQueue.main.async {
-                self.RecipeListImage.image = img
-            }
-        }.resume()
+        let nssURL = NSString(string: url)
+        if let image = NetworkHandler.shared.chache.object(forKey: nssURL){
+            self.RecipeListImage.image = image
+        }else{
+            guard let url = URL(string: url) else{ return }
+            URLSession.shared.dataTask(with:url) { data, res, err in
+                if err != nil { return }
+                guard let _ = res else { return }
+                guard let data = data else { return }
+                
+                if let img = UIImage(data: data) {
+                    NetworkHandler.shared.chache.setObject(img, forKey: nssURL)
+                    DispatchQueue.main.async {
+                        self.RecipeListImage.image = img
+                    }
+                }
+            }.resume()
+        }
     }
+    
     
     private func ConfigureView(){
         RecipeListImage.translatesAutoresizingMaskIntoConstraints = false

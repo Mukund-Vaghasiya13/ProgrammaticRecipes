@@ -5,7 +5,7 @@
 //  Created by Mukund vaghasiya  on 26/10/24.
 //
 
-import Foundation
+import UIKit
 
 
 struct ImageRequest {
@@ -21,6 +21,8 @@ struct Payload{
 class NetworkHandler{
     
     static var shared = NetworkHandler()
+    
+    var chache = NSCache<NSString, UIImage>()
     
     private init(){}
     

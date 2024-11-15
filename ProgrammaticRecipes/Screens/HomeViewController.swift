@@ -65,7 +65,7 @@ class HomeViewController: UIViewController {
         TableView.register(RecipeListCellTableViewCell.self, forCellReuseIdentifier: RecipeListCellTableViewCell.reUseId)
         TableView.rowHeight = 250
         TableView.showsVerticalScrollIndicator = false
-        
+        TableView.delegate = self
         
         let refreshView = UIRefreshControl()
         refreshView.addTarget(self, action: #selector(ReloadData), for: .valueChanged)
@@ -100,4 +100,13 @@ class HomeViewController: UIViewController {
         navigationController?.pushViewController(ProfileViewController(), animated: true)
     }
 
+}
+
+
+extension HomeViewController:UITableViewDelegate{
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailVc = RecipeDetailViewController()
+        detailVc.SetRecipeyValue(recipe: recipes[indexPath.row])
+        navigationController?.pushViewController(detailVc, animated: true)
+    }
 }
