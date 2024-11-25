@@ -89,22 +89,25 @@ class EditProfileViewController: UIViewController {
         let header = [
             "Authorization":"Bearer \(token ?? "")"
         ]
-        
-        guard let imageData = RecipyUserProfile.image?.jpegData(compressionQuality: 0.8) else{
-            //TODO: alert or message
-            print("\n\n Image Data")
-            self.ShowAlert(message:"please Uplode Image", title:"Image Required")
-            return
-        }
-        
-        let JPEGData = ImageRequest(attachment: imageData, fileName: "RecipyUserProfile")
-        let fields = [
-            "username":username.text ?? "",
-            "email":email.text ?? ""
-        ]
-        //TODO: Fields Validation
-        let imageAndField = Payload(imageData: JPEGData, fields: fields)
-        
+
+         var JPEGData:ImageRequest?
+         
+         if isAvtarChanged {
+             guard let imageData = RecipyUserProfile.image?.jpegData(compressionQuality: 0.8) else{
+                 //TODO: alert or message
+                 print("\n\n Image Data")
+                 self.ShowAlert(message:"please Uplode Image", title:"Image Required")
+                 return
+             }
+             JPEGData = ImageRequest(attachment: imageData, fileName: "RecipyUserProfile")
+         }
+         
+         let fields = [
+             "username":username.text ?? "",
+             "email":email.text ?? ""
+         ]
+         let imageAndField = Payload(imageData: JPEGData, fields: fields)
+         
         NetworkHandler.shared.MultiparFormRequest(for: User.self, endpoint: "http://localhost:3000/api/v1/User/update", headers: header, payload: imageAndField) { res in
             switch res {
             case .success(let success):
@@ -113,6 +116,9 @@ class EditProfileViewController: UIViewController {
                     TokenManager.shared.LogoutDeleteToken()
                     userAndTokenData.user = success
                     TokenManager.shared.SetTokenDataLocally(loginData: userAndTokenData)
+                    DispatchQueue.main.async {
+                        self.navigationController?.popViewController(animated: true)
+                    }
                 }
             case .failure(let failure):
                 DispatchQueue.main.async{
@@ -130,7 +136,6 @@ class EditProfileViewController: UIViewController {
         imagePicker.delegate = self
         navigationController?.present(imagePicker, animated: true)
     }
-
 }
 
 

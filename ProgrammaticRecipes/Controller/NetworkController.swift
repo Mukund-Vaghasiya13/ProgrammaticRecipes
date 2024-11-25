@@ -174,15 +174,15 @@ class NetworkHandler{
         
         //MARK: Add image file data
         //Content start
-        if let imageData = payload.imageData {
+        if let imgData = payload.imageData {
             requestData.append("--\(boundary)\(lineBreak)".data(using: .utf8)!)
             
             //Key
-            requestData.append("Content-Disposition: form-data; name=\"\(imageData.fileName)\"; filename=\"image.jpg\"\(lineBreak)".data(using: .utf8)!)
+            requestData.append("Content-Disposition: form-data; name=\"\(imgData.fileName)\"; filename=\"image.jpg\"\(lineBreak)".data(using: .utf8)!)
             requestData.append("Content-Type: image/jpeg\(lineBreak)\(lineBreak)".data(using: .utf8)!)
             
             //Value
-            requestData.append(imageData.attachment)
+            requestData.append(imgData.attachment)
             requestData.append("\(lineBreak)".data(using: .utf8)!)
         }
         
