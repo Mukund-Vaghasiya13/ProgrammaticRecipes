@@ -44,7 +44,7 @@ class HomeViewController: UIViewController {
                 self.UpdateData()
                 break
             case .failure(let failure):
-                print(failure)
+                self.ShowAlert(message: failure.technicalDetails ?? "System Filuare", title: failure.message ?? "Oops!")
             }
         }
     }
@@ -60,7 +60,7 @@ class HomeViewController: UIViewController {
     }
     
     private func ConfigureTableView(){
-        TableView = UITableView(frame: view.frame,style: .plain)
+        TableView = UITableView(frame: .zero,style: .plain)
         view.addSubview(TableView)
         TableView.register(RecipeListCellTableViewCell.self, forCellReuseIdentifier: RecipeListCellTableViewCell.reUseId)
         TableView.rowHeight = 250
@@ -70,6 +70,16 @@ class HomeViewController: UIViewController {
         let refreshView = UIRefreshControl()
         refreshView.addTarget(self, action: #selector(ReloadData), for: .valueChanged)
         TableView.refreshControl = refreshView
+        
+        TableView.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            TableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            TableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            TableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            TableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
+        ])
+        
     }
     
     

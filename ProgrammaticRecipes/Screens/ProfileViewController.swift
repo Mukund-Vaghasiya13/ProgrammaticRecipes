@@ -53,9 +53,6 @@ class ProfileViewController: UIViewController {
         view.addSubview(satck)
         
         satck.translatesAutoresizingMaskIntoConstraints = false
-        
-        
-        
         satck.alignment = .fill   // Make buttons fill the stack view's height
         satck.distribution = .fillEqually  // Evenly space buttons
         satck.spacing = 10
