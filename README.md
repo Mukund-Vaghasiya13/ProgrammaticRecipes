@@ -1,5 +1,5 @@
  - Login
-![Simulator Screenshot - iPhone 15 Pro - 2024-11-27 at 17 01 17](https://github.com/user-attachments/assets/b719b889-1b15-47bd-b540-a4c9b9088edc)
+<img src="https://github.com/user-attachments/assets/b719b889-1b15-47bd-b540-a4c9b9088edc" height="200px" width="100px">
 
  - Signup
 ![Simulator Screenshot - iPhone 15 Pro - 2024-11-27 at 17 01 29](https://github.com/user-attachments/assets/39eda3b6-c8f5-4f15-a886-bcd4d27bcc09)
