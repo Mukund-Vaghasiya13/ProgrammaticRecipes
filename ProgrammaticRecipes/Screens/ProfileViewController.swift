@@ -9,12 +9,18 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
+    enum Section{
+        case Main
+    }
+    
     private var locallyData:LoginModle!
     var imageView = RRDynamicImageView(style: .rounded)
     var bodyLable = RRBodyLable(text: "", FG: .systemGray,NoOFLine: 1)
     var satck = UIStackView()
     var editButton = RRButton(with: "Edit Profile", BG: .black, FG: .white)
     var AddButton = RRButton(with: "Add Recipe", BG: .black, FG: .white)
+    var recipesCollection:UICollectionView!
+    var dataSources:UICollectionViewDiffableDataSource<Section,Recipe>!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -80,7 +86,40 @@ class ProfileViewController: UIViewController {
             satck.heightAnchor.constraint(equalToConstant: 40)
 
         ])
+        
+        ConfigureCollectionView()
     }
+    
+    private func ConfigureCollectionView(){
+        recipesCollection = UICollectionView(frame: .zero, collectionViewLayout: CollectionViewLyout())
+        recipesCollection.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(recipesCollection)
+        
+        NSLayoutConstraint.activate([
+        
+            recipesCollection.topAnchor.constraint(equalTo: satck.bottomAnchor, constant: 15),
+            recipesCollection.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            recipesCollection.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            recipesCollection.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        
+        ])
+        #error("TODO: Create collection View Cell")
+    }
+    
+    private func CollectionViewLyout()->UICollectionViewFlowLayout{
+        
+        let padding:CGFloat  = 12
+        let itemSpacing:CGFloat = 10
+        let fullwidht = view.bounds.width
+        let avalableSpace = fullwidht - ( 2 * padding ) - ( 2 * itemSpacing )
+        let itemWidth = avalableSpace / 3
+        
+        var flowLayout = UICollectionViewFlowLayout()
+        flowLayout.sectionInset = UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
+        flowLayout.itemSize = CGSize(width: itemWidth, height: itemWidth + 40)
+        return flowLayout
+    }
+    
     
     @objc func EditButtonAction(){
         navigationController?.pushViewController(EditProfileViewController(), animated: true)
