@@ -8,12 +8,25 @@
 import UIKit
 
 
-class RRUserAvtarImage: UIImageView {
+enum CoustomImageStyle{
+    case rounded
+    case roundedRect
+    case rect
+}
+
+class RRDynamicImageView: UIImageView {
     
     private var placeHolder = UIImage(systemName: "person.fill")
+    private var imageStyle = CoustomImageStyle.rect
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        ConfigureImage()
+    }
+    
+    init(style:CoustomImageStyle){
+        super.init(frame: .zero)
+        imageStyle = style
         ConfigureImage()
     }
     
@@ -51,7 +64,11 @@ class RRUserAvtarImage: UIImageView {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        layer.cornerRadius = frame.size.width / 2
+        if imageStyle == .rounded {
+            layer.cornerRadius = frame.size.width / 2
+        } else if imageStyle  == .roundedRect{
+            layer.cornerRadius = 10
+        }
         clipsToBounds = true
         contentMode = .scaleAspectFill
     }
