@@ -63,7 +63,7 @@ class HomeViewController: UIViewController {
         TableView = UITableView(frame: .zero,style: .plain)
         view.addSubview(TableView)
         TableView.register(RecipeListCellTableViewCell.self, forCellReuseIdentifier: RecipeListCellTableViewCell.reUseId)
-        TableView.rowHeight = 250
+        TableView.rowHeight = 300
         TableView.showsVerticalScrollIndicator = false
         TableView.delegate = self
         
@@ -103,7 +103,6 @@ class HomeViewController: UIViewController {
         DispatchQueue.main.async{
             self.dataSource.apply(snapshot,animatingDifferences: true)
         }
-        
     }
     
     @objc func rightBarButtonAction(){

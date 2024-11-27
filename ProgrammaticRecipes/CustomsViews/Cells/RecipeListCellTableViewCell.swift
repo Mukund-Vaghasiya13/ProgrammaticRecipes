@@ -64,7 +64,7 @@ class RecipeListCellTableViewCell: UITableViewCell {
             RecipeListImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
             RecipeListImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
             RecipeListImage.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
-            RecipeListImage.heightAnchor.constraint(equalToConstant: 160),
+            RecipeListImage.heightAnchor.constraint(equalToConstant: 200),
             
             BodyLable.topAnchor.constraint(equalTo: RecipeListImage.bottomAnchor, constant: 10),
             BodyLable.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),

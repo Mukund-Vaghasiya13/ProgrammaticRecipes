@@ -12,7 +12,7 @@ class EditProfileViewController: UIViewController {
 
     var email = RRTextField(with: "Enter Email", is: false)
     var username = RRTextField(with: "Enter Username", is: false)
-    var RecipyUserProfile = RRUserAvtarImage(frame: .zero)
+    var RecipyUserProfile = RRDynamicImageView(style: .roundedRect)
     var updateButton = RRButton(with: "Save Changes", BG: .systemGreen, FG: .white)
     var imagePicker:PHPickerViewController!
     var userAndTokenData:LoginModle!

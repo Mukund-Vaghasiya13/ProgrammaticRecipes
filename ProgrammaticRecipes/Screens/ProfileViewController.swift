@@ -10,7 +10,7 @@ import UIKit
 class ProfileViewController: UIViewController {
 
     private var locallyData:LoginModle!
-    var imageView = RRUserAvtarImage(frame: .zero)
+    var imageView = RRDynamicImageView(style: .rounded)
     var bodyLable = RRBodyLable(text: "", FG: .systemGray,NoOFLine: 1)
     var satck = UIStackView()
     var editButton = RRButton(with: "Edit Profile", BG: .black, FG: .white)
@@ -69,7 +69,6 @@ class ProfileViewController: UIViewController {
             imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             imageView.heightAnchor.constraint(equalToConstant: 150),
             imageView.widthAnchor.constraint(equalToConstant: 150),
-            
             
             bodyLable.topAnchor.constraint(equalTo: imageView.bottomAnchor,constant: 5),
             bodyLable.centerXAnchor.constraint(equalTo: view.centerXAnchor),
