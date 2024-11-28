@@ -10,6 +10,7 @@
 		600606FA2CD496550008BCE6 /* RecipeListCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600606F92CD496550008BCE6 /* RecipeListCellTableViewCell.swift */; };
 		6037D7942CCD25E900CEA984 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6037D7932CCD25E900CEA984 /* HomeViewController.swift */; };
 		60409F602CCCBA390037F993 /* ViewController+EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60409F5F2CCCBA390037F993 /* ViewController+EXT.swift */; };
+		604E3D182CF8929D00411B46 /* UserRecipeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604E3D172CF8929D00411B46 /* UserRecipeItem.swift */; };
 		604FD2F82CD734CA0000A2F1 /* RRRecipeImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604FD2F72CD734CA0000A2F1 /* RRRecipeImageView.swift */; };
 		604FD2FC2CD746DB0000A2F1 /* RRTextArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604FD2FB2CD746DB0000A2F1 /* RRTextArea.swift */; };
 		6056333E2CCCE6C100E9AD2D /* LoginModle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6056333D2CCCE6C100E9AD2D /* LoginModle.swift */; };
@@ -40,6 +41,7 @@
 		600606F92CD496550008BCE6 /* RecipeListCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListCellTableViewCell.swift; sourceTree = "<group>"; };
 		6037D7932CCD25E900CEA984 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		60409F5F2CCCBA390037F993 /* ViewController+EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+EXT.swift"; sourceTree = "<group>"; };
+		604E3D172CF8929D00411B46 /* UserRecipeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRecipeItem.swift; sourceTree = "<group>"; };
 		604FD2F72CD734CA0000A2F1 /* RRRecipeImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RRRecipeImageView.swift; sourceTree = "<group>"; };
 		604FD2FB2CD746DB0000A2F1 /* RRTextArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RRTextArea.swift; sourceTree = "<group>"; };
 		6056333D2CCCE6C100E9AD2D /* LoginModle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModle.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				600606F92CD496550008BCE6 /* RecipeListCellTableViewCell.swift */,
+				604E3D172CF8929D00411B46 /* UserRecipeItem.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				60C7D7862CC9FFCD00D8B5D2 /* LoginViewController.swift in Sources */,
+				604E3D182CF8929D00411B46 /* UserRecipeItem.swift in Sources */,
 				600606FA2CD496550008BCE6 /* RecipeListCellTableViewCell.swift in Sources */,
 				60B38FAE2CCFA98C002FAAB6 /* RRHeadingLabel.swift in Sources */,
 				6056333E2CCCE6C100E9AD2D /* LoginModle.swift in Sources */,

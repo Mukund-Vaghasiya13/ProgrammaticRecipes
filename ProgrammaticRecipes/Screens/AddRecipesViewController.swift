@@ -137,8 +137,6 @@ class AddRecipesViewController: UIViewController {
             ContentView.heightAnchor.constraint(equalTo:scrollview.heightAnchor,multiplier: 1.35),
     
         ])
-        
-        
     }
     
     

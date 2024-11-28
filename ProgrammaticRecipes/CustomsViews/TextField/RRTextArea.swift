@@ -9,7 +9,6 @@ class RRTextArea: UITextView, UITextViewDelegate {
         super.init(frame: .zero, textContainer: nil)
         configureTextView()
         addPlaceholder()
-        
         self.delegate = self
     }
     

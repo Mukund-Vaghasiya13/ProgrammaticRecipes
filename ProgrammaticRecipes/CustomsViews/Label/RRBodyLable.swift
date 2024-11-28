@@ -32,5 +32,4 @@ class RRBodyLable: UILabel {
         minimumScaleFactor = 0.8
         lineBreakMode = .byTruncatingTail
     }
-
 }
