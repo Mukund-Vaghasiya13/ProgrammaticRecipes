@@ -14,7 +14,6 @@ struct Recipe:Codable,Hashable{
     var image:String?
     var description:String?
     var ingredients:String?
-    var instructions:String?
 }
 
 ///"http://localhost:3000/api/v1/Recipe/list?page=1"

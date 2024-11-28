@@ -4,7 +4,7 @@
 //
 //  Created by Mukund vaghasiya  on 28/10/24.
 //
-
+#warning("TODO: Is to do is User Recipes page Logic Impliment Refresh controll and Delete that ")
 import UIKit
 
 class ProfileViewController: UIViewController {
@@ -15,7 +15,7 @@ class ProfileViewController: UIViewController {
     
     private var locallyData:LoginModle!
     var imageView = RRDynamicImageView(style: .rounded)
-    var bodyLable = RRBodyLable(text: "", FG: .systemGray,NoOFLine: 1)
+    var bodyLable = RRBodyLable(text: "", FG: .systemGray)
     var satck = UIStackView()
     var editButton = RRButton(with: "Edit Profile", BG: .black, FG: .white)
     var AddButton = RRButton(with: "Add Recipe", BG: .black, FG: .white)
@@ -176,9 +176,11 @@ class ProfileViewController: UIViewController {
 extension ProfileViewController:UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let alert  = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let cancleAction = UIAlertAction(title: "Cancle", style: .cancel)
         let action = UIAlertAction(title: "Delete", style: .destructive) { act in
             print("Hello")
         }
+        alert.addAction(cancleAction)
         alert.addAction(action)
         present(alert, animated: true)
     }

@@ -12,9 +12,9 @@ class RecipeDetailViewController: UIViewController {
     var recipeImage = RRDynamicImageView(style: .roundedRect)
     var headingLable = RRHeadingLabel(fgColor: .gray,alignment: .center, font: 30, text: "null")
     var desc = RRHeadingLabel(fgColor: .gray, alignment: .left, font: 25,text: "Description")
-    var bodyLabel = RRBodyLable(text: "", FG: .black, NoOFLine: 5)
+    var bodyLabel = RRBodyLable(text: "", FG: .black)
     var ingLabel = RRHeadingLabel(fgColor: .gray, alignment: .left, font: 25,text: "Ingredients")
-    var ingredients = RRBodyLable(text: "", FG: .black, NoOFLine: 5)
+    var ingredients = RRBodyLable(text: "", FG: .black)
     //var instruction = RRBodyLable(text: "", FG: .black, NoOFLine: 4)
     
     override func viewDidLoad() {

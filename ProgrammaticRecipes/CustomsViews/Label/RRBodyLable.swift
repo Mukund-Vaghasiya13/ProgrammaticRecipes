@@ -18,11 +18,11 @@ class RRBodyLable: UILabel {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init(text title:String,FG textColor:UIColor,NoOFLine:Int){
+    init(text title:String,FG textColor:UIColor){
         super.init(frame: .zero)
         self.text = title
         self.textColor = textColor
-        numberOfLines = NoOFLine
+        numberOfLines = 0
         ConfigureLable()
     }
     
@@ -30,6 +30,7 @@ class RRBodyLable: UILabel {
         translatesAutoresizingMaskIntoConstraints = false
         font = UIFont.systemFont(ofSize: 16)
         minimumScaleFactor = 0.8
+        textAlignment = .justified
         lineBreakMode = .byTruncatingTail
     }
 }

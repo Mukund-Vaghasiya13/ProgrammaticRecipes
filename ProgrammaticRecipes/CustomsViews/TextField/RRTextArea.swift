@@ -2,7 +2,7 @@ import UIKit
 
 class RRTextArea: UITextView, UITextViewDelegate {
     
-    private let placeholderText: String
+    let placeholderText: String
     
     init(placeholder: String) {
         self.placeholderText = placeholder

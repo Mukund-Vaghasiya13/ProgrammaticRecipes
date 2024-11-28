@@ -11,7 +11,7 @@ class RecipeListCellTableViewCell: UITableViewCell {
     
     var placeHolder = UIImage(named: "Unknown")
     var RecipeListImage = UIImageView(frame: .zero)
-    var BodyLable = RRBodyLable(text: "", FG: .black,NoOFLine: 3)
+    var BodyLable = RRBodyLable(text: "", FG: .black)
     static var reUseId = "cell"
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

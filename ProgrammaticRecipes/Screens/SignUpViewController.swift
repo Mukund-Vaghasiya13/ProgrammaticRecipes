@@ -15,7 +15,7 @@ class SignUpViewController: UIViewController {
     var email = RRTextField(with: "Enter Email", is: false)
     //MARK: because we will do signp with login
     var LoginButton = RRButton(with: "Signup", BG: .systemGreen, FG: .white)
-    var orLabel = RRBodyLable(text: "Or", FG: .label,NoOFLine: 1)
+    var orLabel = RRBodyLable(text: "Or", FG: .label)
     
     override func viewDidLoad() {
         super.viewDidLoad()

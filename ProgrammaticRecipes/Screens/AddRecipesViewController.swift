@@ -18,7 +18,6 @@ class AddRecipesViewController: UIViewController {
     var TitleTextField = RRTextField(with: "Enter Title", is: false)
     var discreption = RRTextArea(placeholder: "Enter Discreption")
     var ingredients = RRTextArea(placeholder: "Enter Ingredients")
-    var instructions = RRTextArea(placeholder: "Enter Instructions")
     var UplodeButton = RRButton(with: "Create Recipe", BG: .systemGreen, FG: .white)
     var scrollview = UIScrollView()
     var ContentView = UIView()
@@ -61,11 +60,8 @@ class AddRecipesViewController: UIViewController {
             
             ingredients.topAnchor.constraint(equalTo: discreption.bottomAnchor, constant: 10),
             ingredients.heightAnchor.constraint(equalToConstant: 85),
-            
-            instructions.topAnchor.constraint(equalTo: ingredients.bottomAnchor, constant: 10),
-            instructions.heightAnchor.constraint(equalToConstant: 85),
-            
-            UplodeButton.topAnchor.constraint(equalTo: instructions.bottomAnchor,constant: 10),
+          
+            UplodeButton.topAnchor.constraint(equalTo: ingredients.bottomAnchor,constant: 10),
             UplodeButton.heightAnchor.constraint(equalToConstant: 50),
         
         ])
@@ -92,12 +88,25 @@ class AddRecipesViewController: UIViewController {
         
         //TODO: Fields Validation
         
-        let fields = [
-            "title":TitleTextField.text ?? "",
+        var fields = [
             "description":discreption.text ?? "",
             "ingredients":ingredients.text ?? "",
-            "instructions":instructions.text ?? ""
         ]
+        
+        
+        if let text = FieldsValidation(){
+            ShowAlert(message: text, title: "Validation")
+            return
+        }
+        
+        for (k,v) in fields{
+            if v.count > 200 {
+                ShowAlert(message: "\(k) Must be less then or 200 character", title: "Validation")
+                return
+            }
+        }
+        
+        fields["title"] = TitleTextField.text ?? ""
         
         let imageAndField = Payload(imageData: JPEGData, fields: fields)
         
@@ -113,6 +122,18 @@ class AddRecipesViewController: UIViewController {
             }
         }
         
+    }
+    
+    
+    private func FieldsValidation()->String?{
+        if discreption.text == discreption.placeholderText{
+            return "The Field Discription is Empety"
+        }else if ingredients.text == ingredients.placeholderText{
+            return "The Field Ingredients  is Empety"
+        }else if TitleTextField.text == nil || TitleTextField.text == ""{
+            return "The Field title is Empety"
+        }
+        return nil
     }
     
     private func ScrollViewAndContentView(){
@@ -141,15 +162,10 @@ class AddRecipesViewController: UIViewController {
     
     
     private func ViewHandler(){
-        let listOfView = [TitleTextField,discreption,ingredients,instructions,UplodeButton]
+        let listOfView = [TitleTextField,discreption,ingredients,UplodeButton]
         
         for i in listOfView{
             ContentView.addSubview(i)
-            ContentView.addSubview(i)
-            ContentView.addSubview(i)
-            ContentView.addSubview(i)
-            ContentView.addSubview(i)
-            
             NSLayoutConstraint.activate([
                 i.leadingAnchor.constraint(equalTo: ContentView.leadingAnchor, constant: 30),
                 i.trailingAnchor.constraint(equalTo: ContentView.trailingAnchor, constant: -30),
