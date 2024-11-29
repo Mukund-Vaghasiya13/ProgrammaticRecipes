@@ -17,6 +17,8 @@ extension UIViewController{
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let alertAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
         alert.addAction(alertAction)
-        navigationController?.present(alert, animated: true)
+        DispatchQueue.main.async {
+            self.navigationController?.present(alert, animated: true)
+        }
     }
 }

@@ -115,6 +115,9 @@ class AddRecipesViewController: UIViewController {
             case .success(let success):
                 //MARK: To Do Something 
                 print(success)
+                DispatchQueue.main.async {
+                    self.navigationController?.popViewController(animated: true)
+                }
             case .failure(let failure):
                 DispatchQueue.main.async{
                     self.ShowAlert(message: failure.technicalDetails ?? "Oops Something went wrong", title: failure.message ?? "")

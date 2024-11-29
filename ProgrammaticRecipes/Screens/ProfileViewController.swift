@@ -171,14 +171,43 @@ class ProfileViewController: UIViewController {
     @objc func AddButtonAction(){
         navigationController?.pushViewController(AddRecipesViewController(), animated: true)
     }
+    
+    private func DeletRecipesUsingId(id:String){
+        let body = [
+            "_id":id
+        ]
+        
+        let token = TokenManager.shared.GetToken()
+        let header = [
+            "Authorization":"Bearer \(token ?? "")"
+        ]
+        let endpoint = "http://localhost:3000/api/v1/Recipe/list/user/delete"
+        
+        do{
+            let data = try JSONEncoder().encode(body)
+            NetworkHandler.shared.PostRequest(for: ErrorModle.self, endpoint: endpoint, Body: data, header: header) { res in
+                switch res{
+                case .success(let pass):
+                    self.ShowAlert(message: pass.technicalDetails ?? "Deleted Successfull", title: pass.message ?? "Deleted")
+                case .failure(let fail):
+                    self.ShowAlert(message: fail.technicalDetails ?? "Delete Fail", title: fail.message ?? "Error")
+                }
+            }
+        }catch{
+            //TODO: Error Handling
+           print("Encoding Fail")
+        }
+    
+    }
 }
 
 extension ProfileViewController:UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let alert  = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let cancleAction = UIAlertAction(title: "Cancle", style: .cancel)
-        let action = UIAlertAction(title: "Delete", style: .destructive) { act in
-            print("Hello")
+        let action = UIAlertAction(title: "Delete", style: .destructive) { [weak self]  act in
+            guard let self = self else{ return }
+            DeletRecipesUsingId(id: recipes[indexPath.row]._id ?? "")
         }
         alert.addAction(cancleAction)
         alert.addAction(action)
